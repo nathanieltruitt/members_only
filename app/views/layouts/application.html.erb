@@ -12,10 +12,8 @@
   </head>
 
   <body>
-    <div class="messages">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    </div>
+    <%= render 'shared/flash' %>
+    <%= render 'shared/navbar' %>
     <%= yield %>
   </body>
 </html>

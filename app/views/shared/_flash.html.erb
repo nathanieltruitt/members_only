@@ -1,0 +1,8 @@
+    <div class="messages">
+    <% unless flash[:notice].nil? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% unless flash[:alert].nil? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    </div>
