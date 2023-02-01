@@ -1,0 +1,5 @@
+.app-navbar {
+  display: grid;
+  grid-template-columns: 85% 1fr;
+  width: 100%;
+}

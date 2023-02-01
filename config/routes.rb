@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "home#index"
-  get '/home', to: 'home#index'
+  root "posts#index"
+  resources :posts
+  get '/my_posts', to: 'posts#my_posts'
 end

@@ -1,0 +1,10 @@
+<div class="post">
+<h1>Title: <%= post.title %></h1>
+<% if !current_user.nil? %>
+<h3>Author: <%= post.users.email %></h3>
+<% end %>
+<p>Content: <%= post.content %></p>
+<% if !current_user.nil? && current_user.email == post.users.email %>
+  <%= link_to 'Edit post', edit_post_path(post) %>
+<% end %>
+</div>
