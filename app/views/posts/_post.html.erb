@@ -5,6 +5,9 @@
 <% end %>
 <p>Content: <%= post.content %></p>
 <% if !current_user.nil? && current_user.email == post.users.email %>
-  <%= link_to 'Edit post', edit_post_path(post) %>
+  <div class="d-flex">
+    <%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-secondary me-2' %>
+    <%= button_to 'Delete', post_path(post), method: :delete, class: 'btn btn-danger' %>
+  </div>
 <% end %>
 </div>

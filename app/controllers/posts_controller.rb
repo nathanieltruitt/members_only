@@ -4,6 +4,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    respond_to do |format|
+      format.html { render :index, status: :ok }
+      format.json { render json: @posts, status: :ok }
+    end
   end
 
   def new
@@ -31,8 +35,9 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      flash[:notice] = 'Successfully updated post!'
       respond_to do |format|
-        format.html { redirect_to posts_path, status: :ok, location: @post }
+        format.html { redirect_to posts_path, status: 303, location: @post }
         format.json { render json: @post, status: :ok }
       end
     else
@@ -62,6 +67,15 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    post = Post.find(params[:id])
+    if post.users_id == current_user.id
+      @post = post
+    else
+      flash[:alert] = '401 Unauthorized'
+      respond_to do |format|
+        format.html { redirect_to posts_path, status: :unauthorized }
+        format.json { render json: 'UnAuthorized', status: :unauthorized}
+      end
+    end
   end
 end
